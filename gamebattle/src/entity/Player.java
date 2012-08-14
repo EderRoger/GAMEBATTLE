@@ -1,40 +1,44 @@
 package entity;
 
-import type.Attack;
 import type.Type;
 
 public abstract class Player {
 
 	private Type type;
-	private Attack attack;
-	private int strengh;
+	private int energy;
 	private int power;
+	public boolean isAlive = true;
 
-	public Player(Type type, int power, int strengh) {
+	public Player(Type type, int power, int energy) {
 		this.type = type;
 		this.power = power;
-		this.strengh = strengh;
+		this.energy = energy;
 	}
 
 	public Type getType() {
 		return type;
 	}
 
-	public int getStrengh() {
-		return strengh;
+	public int getEnergy() {
+		return energy;
+	}
+
+	public void setEnergy(int energy) {
+		if (this.energy <= 0)
+			this.isAlive = false;
+		this.energy = energy;
 	}
 
 	public int getPower() {
 		return power;
 	}
 
-	public Attack getAttack() {
-		return attack;
+	public boolean isAlive() {
+		return isAlive;
 	}
 
-	public Player attack() {
-		this.attack = Attack.toAttack();
-		return this;
+	public void setAlive(boolean isAlive) {
+		this.isAlive = isAlive;
 	}
 
 }

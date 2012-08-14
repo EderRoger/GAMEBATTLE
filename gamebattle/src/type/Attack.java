@@ -5,7 +5,7 @@ import java.util.Random;
 public enum Attack {
 	LOST, NORMAL, LUCK, CRITICAL;
 
-	public static Attack toAttack() {
+	public static Attack execute() {
 		int luckPoint = new Random().nextInt(100);
 		if (luckPoint >= 0 && luckPoint <= 3)
 			return LOST;
@@ -18,4 +18,5 @@ public enum Attack {
 
 		return LOST;
 	}
+	
 }

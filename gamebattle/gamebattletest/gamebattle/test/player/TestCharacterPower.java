@@ -10,12 +10,14 @@ import exception.Damage;
 
 public class TestCharacterPower {
 
-	Hero hero = new Hero(Type.human, 50, 50);
-	Enemy globin = new Enemy(Type.globin, 50, 50);
+	Hero hero = new Hero(Type.human, 50, 100);
+	Enemy globin = new Enemy(Type.globin, 50, 200);
 
 	@Test(expected = CriticalDamage.class)
 	public void attackTest() throws Damage {
-		hero.attack(globin);
+		while (globin.isAlive) {
+			hero.attack(globin);
+		}
 	}
 
 }
