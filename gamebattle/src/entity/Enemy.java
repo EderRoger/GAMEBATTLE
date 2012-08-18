@@ -1,10 +1,10 @@
 package entity;
 
-import type.Type;
+import type.CharacterType;
 
 public class Enemy extends Player {
 
-	public Enemy(Type type, int power, int energy) {
+	public Enemy(CharacterType type, int power, int energy) {
 		super(type, power, energy);
 	}
 

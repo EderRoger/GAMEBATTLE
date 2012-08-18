@@ -1,21 +1,25 @@
 package entity;
 
-import type.Type;
+import type.CharacterType;
+import engine.EngineBattle;
+import exception.Damage;
 
 public abstract class Player {
 
-	private Type type;
+	private CharacterType type;
 	private int energy;
 	private int power;
-	public boolean isAlive = true;
+	public boolean alive = true;
+	private EngineBattle engineBattle;
 
-	public Player(Type type, int power, int energy) {
+	public Player(CharacterType type, int power, int energy) {
 		this.type = type;
 		this.power = power;
 		this.energy = energy;
+		this.engineBattle = new EngineBattle();
 	}
 
-	public Type getType() {
+	public CharacterType getType() {
 		return type;
 	}
 
@@ -24,8 +28,6 @@ public abstract class Player {
 	}
 
 	public void setEnergy(int energy) {
-		if (this.energy <= 0)
-			this.isAlive = false;
 		this.energy = energy;
 	}
 
@@ -34,11 +36,22 @@ public abstract class Player {
 	}
 
 	public boolean isAlive() {
-		return isAlive;
+		return energy > 0;
 	}
 
-	public void setAlive(boolean isAlive) {
-		this.isAlive = isAlive;
+	public EngineBattle getEngineBattle() {
+		return engineBattle;
+	}
+
+	public Player executeAttackInTargetWithLuckPoint(Player target, int luckPoint) throws Damage {
+		target.setEnergy(target.getEnergy() - engineBattle.executeAttackWithAttackPowerAndLuckPoint(getPower(), luckPoint));
+		return target;
+
+	}
+
+	@Override
+	public String toString() {
+		return "Type: " + type.toString() + " Energy:" + energy + " Power: " + power;
 	}
 
 }

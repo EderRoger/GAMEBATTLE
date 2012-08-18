@@ -2,22 +2,23 @@ package gamebattle.test.player;
 
 import org.junit.Test;
 
-import type.Type;
+import type.CharacterType;
+import engine.Battlefield;
 import entity.Enemy;
 import entity.Hero;
-import exception.CriticalDamage;
 import exception.Damage;
 
 public class TestCharacterPower {
 
-	Hero hero = new Hero(Type.human, 50, 100);
-	Enemy globin = new Enemy(Type.globin, 50, 200);
+	Hero hero = new Hero(CharacterType.human, 50, 100);
+	Enemy globin = new Enemy(CharacterType.globin, 10, 80);
+	Battlefield battlefield = new Battlefield(hero, globin);
 
-	@Test(expected = CriticalDamage.class)
+	@Test
 	public void attackTest() throws Damage {
-		while (globin.isAlive) {
-			hero.attack(globin);
-		}
+
+		battlefield.executeBallteTurn();
+
 	}
 
 }
